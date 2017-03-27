@@ -10,22 +10,22 @@
             hide_all_images(slider);
             document.getElementById('slider_output_' + slider.id).innerHTML = slider.value;
 
-            if(slider.value <= (document.getElementById('slider_unit_sm_' + slider.id).value)) {
+            if(Number(slider.value) <= Number(document.getElementById('slider_unit_sm_' + slider.id).value)) {
                 document.getElementById('img_sm_' + slider.id).style.display = 'block';
             }
-            if(slider.value > document.getElementById('slider_unit_sm_' + slider.id).value &&
-               slider.value < document.getElementById('slider_unit_me_' + slider.id).value) {
+            if(Number(slider.value) > Number(document.getElementById('slider_unit_sm_' + slider.id).value) &&
+               Number(slider.value) < Number(document.getElementById('slider_unit_me_' + slider.id).value)) {
                 document.getElementById('img_me_' + slider.id).style.display = 'block';
             }
-            if(slider.value >= document.getElementById('slider_unit_me_' + slider.id).value &&
-               slider.value < document.getElementById('slider_unit_lg_' + slider.id).value) {
+            if(Number(slider.value) >= Number(document.getElementById('slider_unit_me_' + slider.id).value) &&
+               Number(slider.value) < Number(document.getElementById('slider_unit_lg_' + slider.id).value)) {
                 document.getElementById('img_lg_' + slider.id).style.display = 'block';
             }
-            if(slider.value >= document.getElementById('slider_unit_lg_' + slider.id).value &&
-               slider.value < document.getElementById('slider_unit_hu_' + slider.id).value) {
+            if(Number(slider.value) >= Number(document.getElementById('slider_unit_lg_' + slider.id).value) &&
+               Number(slider.value) < Number(document.getElementById('slider_unit_hu_' + slider.id).value)) {
                 document.getElementById('img_lg_' + slider.id).style.display = 'block';
             }            
-            if(slider.value >= document.getElementById('slider_unit_hu_' + slider.id).value) {
+            if(Number(slider.value) >= Number(document.getElementById('slider_unit_hu_' + slider.id).value)) {
                 document.getElementById('img_hu_' + slider.id).style.display = 'block';
             }
         }
@@ -42,7 +42,7 @@
     <body>
       <form action="submit.php" method="POST">
 <?php
-    $db = new PDO("mysql:host=localhost;dbname=quotesys;charset=utf8","root","");
+    $db = new PDO("mysql:host=localhost;dbname=quotesys;charset=utf8","root","NeeT0467");
     $sql = "SELECT * FROM line_item";
     $sth = $db->prepare($sql);
     $sth->execute();
