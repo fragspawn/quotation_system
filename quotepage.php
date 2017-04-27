@@ -48,7 +48,6 @@
             document.getElementById('img_lg_' + slider.id).style.display = 'none';
             document.getElementById('img_hu_' + slider.id).style.display = 'none';
         }
-
     </script>
     </head>
     <body>
@@ -68,11 +67,13 @@
             <img class="img_lg" id="img_lg_<?php echo $row['system_name']; ?>" src="<?php echo $row['image_large']; ?>"/>
             <img class="img_hu" id="img_hu_<?php echo $row['system_name']; ?>" src="<?php echo $row['image_massive']; ?>"/>
         </div>
-        <label><?php echo $row['system_name']; ?></label>
-        <input type="range" class="range_slider" name="<?php echo $row['system_name']; ?>" id="<?php echo $row['system_name']; ?>" value="<?php echo $row['units_min']; ?>"
-          min="<?php echo $row['units_min']; ?>" max="<?php echo $row['units_max']; ?>" step="<?php echo $row['unit_increment']; ?>"
-          onChange="slideMe(this)">
-        <output class="slider_output" id="slider_output_<?php echo $row['system_name']; ?>"><?php echo $row['units_min']; ?></output><span><?php echo $row['units']; ?></span>
+        <div class="slider_control">
+            <label><?php echo $row['system_name']; ?></label>
+            <input type="range" class="range_slider" name="<?php echo $row['system_name']; ?>" id="<?php echo $row['system_name']; ?>" value="<?php echo $row['units_min']; ?>"
+                min="<?php echo $row['units_min']; ?>" max="<?php echo $row['units_max']; ?>" step="<?php echo $row['unit_increment']; ?>"
+                onChange="slideMe(this)">
+            <output class="slider_output" id="slider_output_<?php echo $row['system_name']; ?>"><?php echo $row['units_min']; ?></output><span><?php echo $row['units']; ?></span>
+        </div>
         <input type="hidden" name="slider_unit_cost_<?php echo $row['system_name']; ?>" id="slider_unit_cost_<?php echo $row['system_name']; ?>" value="<?php echo $row['unit_cost']; ?>">
         <input type="hidden" name="slider_unit_sm_<?php echo $row['system_name']; ?>" id="slider_unit_sm_<?php echo $row['system_name']; ?>" value="<?php echo $row['units_small']; ?>">
         <input type="hidden" name="slider_unit_me_<?php echo $row['system_name']; ?>" id="slider_unit_me_<?php echo $row['system_name']; ?>" value="<?php echo $row['units_medium']; ?>">
