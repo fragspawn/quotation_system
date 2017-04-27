@@ -69,7 +69,7 @@
             <img class="img_hu" id="img_hu_<?php echo $row['system_name']; ?>" src="<?php echo $row['image_massive']; ?>"/>
         </div>
         <label><?php echo $row['system_name']; ?></label>
-        <input type="range" class="item_range_element" name="<?php echo $row['system_name']; ?>" id="<?php echo $row['system_name']; ?>" value="<?php echo $row['units_min']; ?>"
+        <input type="range" class="range_slider" name="<?php echo $row['system_name']; ?>" id="<?php echo $row['system_name']; ?>" value="<?php echo $row['units_min']; ?>"
           min="<?php echo $row['units_min']; ?>" max="<?php echo $row['units_max']; ?>" step="<?php echo $row['unit_increment']; ?>"
           onChange="slideMe(this)">
         <output class="slider_output" id="slider_output_<?php echo $row['system_name']; ?>"><?php echo $row['units_min']; ?></output><span><?php echo $row['units']; ?></span>
