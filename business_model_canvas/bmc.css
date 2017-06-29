@@ -22,6 +22,15 @@ header {
 h1 {
     font-family: AvantgardeBlack;
 }
+aside {
+    width: 80%;
+    margin: 0 auto;
+    padding: 4em 0 4em 0;
+}
+aside p {
+    padding: 0 1em 0 1em;
+    margin: .6em;
+}
 .wrapper {
     margin: .5em;
 }

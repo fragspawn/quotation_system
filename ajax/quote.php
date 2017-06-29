@@ -11,6 +11,7 @@
         $.ajax({
         url: "https://cari.mba/line_items",
             success: function(data){
+                console.log(data);
                 if(data.success) {
                     for(vari=0;i<data[0].length;i++) {
                         $('#out').append(data[0][i]);
