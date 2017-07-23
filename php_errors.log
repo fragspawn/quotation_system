@@ -1,0 +1,12 @@
+[19-Jul-2017 00:50:48 UTC] PHP Warning:  PDOStatement::execute() expects parameter 1 to be array, integer given in /home/ubuntu/workspace/quotation_system/ws/lineitems.php on line 6
+[19-Jul-2017 00:50:48 UTC] PHP Stack trace:
+[19-Jul-2017 00:50:48 UTC] PHP   1. {main}() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:0
+[19-Jul-2017 00:50:48 UTC] PHP   2. PDOStatement->execute() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:6
+[19-Jul-2017 00:51:18 UTC] PHP Warning:  PDO::setAttribute() expects exactly 2 parameters, 3 given in /home/ubuntu/workspace/quotation_system/ws/lineitems.php on line 3
+[19-Jul-2017 00:51:18 UTC] PHP Stack trace:
+[19-Jul-2017 00:51:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:0
+[19-Jul-2017 00:51:18 UTC] PHP   2. PDO->setAttribute() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:3
+[19-Jul-2017 00:51:21 UTC] PHP Warning:  PDO::setAttribute() expects exactly 2 parameters, 3 given in /home/ubuntu/workspace/quotation_system/ws/lineitems.php on line 3
+[19-Jul-2017 00:51:21 UTC] PHP Stack trace:
+[19-Jul-2017 00:51:21 UTC] PHP   1. {main}() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:0
+[19-Jul-2017 00:51:21 UTC] PHP   2. PDO->setAttribute() /home/ubuntu/workspace/quotation_system/ws/lineitems.php:3
