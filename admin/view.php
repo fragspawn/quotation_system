@@ -24,7 +24,10 @@ function show_header() {
 function show_footer() {
 ?>
         <footer>
-            <h5>Debug goes here</h5>
+            <h5>Debug goes here<br/></h5>
+			<?php echo print_r($_GET) . '<br/>'; ?>
+			<?php echo print_r($_POST) . '<br/>'; ?>
+			<?php echo $_SESSION['error'] . '<br/>'; $_SESSION['error'] = ''; ?>
         </footer>
     </body>
 </html>

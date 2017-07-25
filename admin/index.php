@@ -15,9 +15,11 @@ if(isset($_GET['state'])) {
 
 // Do authentication Checks
 if($state == 'loginprocessing') {
-    if(util_validity_check($_POST['username'], '[a-zA-Z0-9]{8,16}') == 'bob' && 
-       util_validity_check($_POST['password'], '[a-zA-Z0-9]{8,16}') == 'brown') {
-        $_SESSION['userstate'] = 'admin';
+	if(isset($_POST['username']) && isset($_POST['password'])) {
+		if(db_authenticate(util_validity_check($_POST['username'], '[a-zA-Z0-9]{8,16}'), 
+    					   util_validity_check($_POST['password'], '[a-zA-Z0-9]{8,16}'))) {
+        	$_SESSION['userstate'] = 'admin';
+		} 
     }    
 }
 
