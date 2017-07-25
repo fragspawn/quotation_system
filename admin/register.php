@@ -1,7 +1,6 @@
 
 <?php
 /*
- * TODO
  * Write a register form that:
  * Takes an e-mail address, but onChange, checks to see if the e-mail pre-exists
  * Write a web service that check only for pual@pual.com
@@ -10,9 +9,7 @@
  * Ask for first name - blank is not acceptable
  * Ask for Last name - blank is not acceptable
  * Give a submit button if all the above are good (otherwise gray the submit button)
- *
  */
-
 ?>
 <!doctype html>
 <html>
@@ -37,33 +34,29 @@
         function comparePass() {
             if(password1.value.length > 0 && password2.value.length > 0) {
                 if(password1.value != password2.value) {
-                    error.innerHTML = 'passwords don\'t match'; 
+                    error_div.innerHTML = 'passwords don\'t match'; 
                     return false;
                 } else {
-                    error.innerHTML = ''; 
-                    return true;
+                    error_div.innerHTML = ''; 
                 }
-            } else {
-                return false;
-            }
+            } 
+            return false;
         }
 
         function checkEmail() {
             if(useremail.checkValidity() && useremail.value.length > 0) {
                 var ret_res = $.post("reg_chk_email.php", $('#registration').serialize());
                     ret_res.done(function( data ) {
-                        console.log(data);
                         if(data == 'true') {
-                            error.innerHTML = 'email exists';
+                            error_div.innerHTML = 'email exists';
                             return false;
                         } else {
-                            error.innerHTML = '';
-                            return false;
+                            error_div.innerHTML = '';
+                            return true;
                         }
                     });
-            } else {
-                return false;
-            }
+            } 
+            return false;
         }
 
         function enableSubmit() {
@@ -71,7 +64,7 @@
             if(checkEmail() == true) {
                 err = true;
             }
-            if(comparePass() == false) { 
+            if(comparePass() == false) {
                 err = true;
             }
             if(firstname.checkValidity() && firstname.value.length > 0) {
@@ -90,7 +83,7 @@
         }
     </script>
     <body>
-        <div id="error"></div>
+        <div id="error_div"></div>
         <fieldset>
             <legend>Registration Form</legend>
                 <form id="registration">
