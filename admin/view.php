@@ -27,7 +27,12 @@ function show_footer() {
             <h5>Debug goes here<br/></h5>
 			<?php echo print_r($_GET) . '<br/>'; ?>
 			<?php echo print_r($_POST) . '<br/>'; ?>
-			<?php echo $_SESSION['error'] . '<br/>'; $_SESSION['error'] = ''; ?>
+			<?php echo print_r($_SESSION) . '<br/>'; ?>
+            <?php 
+                if(isset($_SESSION['error'])) {
+                    $_SESSION['error'] = '';
+                }
+            ?>
         </footer>
     </body>
 </html>
