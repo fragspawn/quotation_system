@@ -1,10 +1,10 @@
 <?php
 
-function show_header() {
+function show_header($state_msg) {
 ?>
 <html>
     <head>
-        <title>Quote System - Admin Panel</title>
+        <title>Quote Admin - <?php echo $state_msg; ?></title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <script>    
             // remove get parameters from user view
@@ -15,25 +15,27 @@ function show_header() {
     </head>
     <body>
         <header>
-            <h1>Quote System - Admin Panel</h1>
+            <h1>Quote Admin</h1><h2><?php echo $state_msg; ?></h2>
         </header>
-
+        <aside>
 <?php
 }
 
 function show_footer() {
 ?>
-        <footer>
-            <h5>Debug goes here<br/></h5>
-			<?php echo print_r($_GET) . '<br/>'; ?>
-			<?php echo print_r($_POST) . '<br/>'; ?>
-			<?php echo print_r($_SESSION) . '<br/>'; ?>
-            <?php 
-                if(isset($_SESSION['error'])) {
-                    $_SESSION['error'] = '';
-                }
-            ?>
-        </footer>
+            </section>
+            <footer>
+                <h5>Debug goes here<br/></h5>
+                <?php echo print_r($_GET) . '<br/>'; ?>
+                <?php echo print_r($_POST) . '<br/>'; ?>
+                <?php echo print_r($_SESSION) . '<br/>'; ?>
+                <?php 
+                    if(isset($_SESSION['error'])) {
+                        unset($_SESSION['error']);
+                    }
+                ?>
+            </footer>
+        </aside>
     </body>
 </html>
 <?php
@@ -42,18 +44,24 @@ function show_footer() {
 function show_menu($usr) {
 ?>
         <nav>
+			<ul>
 <?php
     if($usr == 'anon') {
-        echo '- login - ';
+        echo '<li><a href="index.php?state=login">login</a></li>';
+		echo '<li><a href="index.php?state=about">about</a></li>';
     }
     if($usr == 'admin') {
-        echo '- logout - ';
+        echo '<li><a href="index.php?state=lineItems">Line Items</a></li>';
+        echo '<li><a href="index.php?state=quotations">Quotations</a></li>';
+        echo '<li><a href="index.php?state=admins">Admins</a></li>';
+        echo '<li><a href="index.php?state=logout">logout</a></li>';
     }
 ?>
+			</ul>
         </nav>
+		<section>
 <?php
 }
-
 function show_login($msg) {
     if($msg == 'bad') {
         echo 'you done gone goofed';
@@ -64,20 +72,23 @@ function show_login($msg) {
     if($msg == 'admin') {
         echo 'you gone done accessed an admin page';
     }
-
 ?>
-<html>
-    <form action="index.php?state=loginprocessing" method="POST">
-        <label>User Name</label>
-        <input type="text" name="username">
-        <label>Password</label>
-        <input type="password" name="password">
-        <input type="submit" name="submit" value="login">
-    </form>
-</html>
+    <fieldset>
+        <main>Login</main>
+        <form action="index.php?state=loginprocessing" method="POST">
+            <div>
+                <label>User Name</label>
+                <input type="text" name="username">
+            </div>
+            <div>
+                <label>Password</label>
+                <input type="password" name="password">
+            </div>
+            <input type="submit" name="submit" value="login">
+        </form>
+    </fieldset>
 <?php
 }
-
 function show_secure() {
 ?>
 <html>
@@ -86,5 +97,8 @@ function show_secure() {
     </form>
 </html>
 <?php
+}
+function show_about() {
+	echo 'This interface is not for the puclic';
 }
 ?>

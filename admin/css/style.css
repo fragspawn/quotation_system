@@ -1,23 +1,97 @@
+@font-face {
+    font-family: Avantgarde;
+    src: url('../../fonts/ITC Avant Garde Gothic LT Book Regular.otf');
+}
+@font-face {
+    font-family: AvantgardeBlack;
+    src: url('../../fonts/ITC Avant Garde Gothic LT Bold.otf');
+}
 * {
     border: 0;
     padding: 0;
     margin: 0;
 }
+a{
+	color: maroon;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	color: red;
+}
+h1 {
+    font-family: AvantgardeBlack;
+}
+body {
+    background: linear-gradient(to bottom right, whitesmoke, blanchedalmond);
+    font-family: Avantgarde;
+    letter-spacing: .02em;
+    box-shadow: .1em .1em .1em .1em darkgray;
+}
 header {
-    background: darkolivegreen; 
-    color: white;
+    font-family: AvantgardeBlack;
+    height: 10em;
+    padding: 1em;
+    background-image: url('../../img/carimba_noslogan.svg');
+    background-repeat: no-repeat;
+    background-position: top center;
+}
+aside {
+	margin: 0 auto;
+   	width: 80%;
 }
 nav {
-    background: maroon;
-    color: yellow;
+    background: blanchedalmond;
+    height: 2em;
+    box-shadow: .1em .1em .1em .1em darkgray;
+}
+nav li {
+	display: inline-block;
+	padding: .5em 2em .5em 2em;
+	list-style: none;	
 }
 footer {
-    background: maroon;
-    color: yellow;
+    background: blanchedalmond;
+    box-shadow: .1em .1em .1em .1em darkgray;
+}
+section{
+	padding: 2em;
+}
+fieldset {
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: .1em .1em .1em .1em darkgray;
+    background: white;
+}
+fieldset main {
+    font-family: AvantgardeBlack;
+    padding: .4em .3em .3em .3em;
+    background: blanchedalmond;
+}
+form {
+    padding: 2em;
+} 
+form div {
+    display: block;
 }
 label {
-    background: lightgreen;
+    padding: .5em;
+    display: inline-block;
+    width: 30%;
 }
 input {
-    background: lightblue;
+    padding: .5em;
+    display: inline-block;
+    box-shadow: .1em .1em .1em .1em darkgray;
+}
+input:focus {
+    background: blanchedalmond;
+}
+input[type=submit] {
+    background: blanchedalmond;
+    padding: .3em;
+    margin: 1em 0 0 .5em;
+    display: block;
 }

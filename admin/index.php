@@ -24,7 +24,7 @@ if($state == 'loginprocessing') {
 }
 
 // Page Start
-show_header();
+show_header($state);
 if(isset($_SESSION['userstate'])) {
     // ANONYMOUS USER
     if($_SESSION['userstate'] == 'anonymous') {
@@ -33,6 +33,9 @@ if(isset($_SESSION['userstate'])) {
             case 'login':
                 show_login('nul');
                 break;
+            case 'about': 
+                show_about();
+				break;
             case 'loginprocessing': 
                 show_login('bad');
                 break;
@@ -48,25 +51,25 @@ if(isset($_SESSION['userstate'])) {
             case 'secure':
                 show_secure();
                 break;
-            case 'quotelist':
+            case 'quoteList':
                 show_quotes();
                 break;
-            case 'quoteitem':
+            case 'quoteItems':
                 show_qote_item($_GET['qitem']);
                 break;
-            case 'itemlist':
+            case 'quoteItem':
                 show_items();
                 break;
-            case 'lineitem':
+            case 'lineItem':
                 show_item($_GET['item']);
                 break;
-            case 'updateitem':
+            case 'updateItem':
                 update_item($_GET['item']);
                 break;
-            case 'enableitem':
+            case 'enableItem':
                 disable_item($_GET['item']);
                 break;
-            case 'disableitem':
+            case 'disableItem':
                 enable_item($_GET['item']);
                 break;
             case 'logout':

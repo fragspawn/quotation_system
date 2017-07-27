@@ -1,10 +1,10 @@
 @font-face {
     font-family: Avantgarde;
-    src: url('../fonts/ITC Avant Garde Gothic LT Book Regular.otf');
+    src: url('../../fonts/ITC Avant Garde Gothic LT Book Regular.otf');
 }
 @font-face {
     font-family: AvantgardeBlack;
-    src: url('../fonts/ITC Avant Garde Gothic LT Bold.otf');
+    src: url('../../fonts/ITC Avant Garde Gothic LT Bold.otf');
 }
 
 body {
@@ -15,7 +15,7 @@ body {
 }
 header {
     height: 10em;
-    background-image: url('../img/carimba_noslogan.svg');
+    background-image: url('../../img/carimba_noslogan.svg');
     background-repeat: no-repeat;
     background-position: top center;
 }
