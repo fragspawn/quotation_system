@@ -48,14 +48,30 @@ if(isset($_SESSION['userstate'])) {
     if($_SESSION['userstate'] == 'admin') {
         show_menu('admin');
         switch($state) {
-            case 'secure':
-                show_secure();
+            case 'lineItems':
+                $line_items = db_get_line_items();  // go to the database
+                if($line_items != false) { // check we got something from the db
+                    show_line_items($line_items); // show results
+                } else {
+                    echo 'err';
+                }
+
                 break;
-            case 'quoteList':
-                show_quotes();
+            case 'quotations':
+                $quote_items = db_get_quotation_list();
+                if($quote_items != false) {
+                    show_quotes($quote_items);
+                } else {
+                    echo 'err';
+                }
                 break;
-            case 'quoteItems':
-                show_qote_item($_GET['qitem']);
+            case 'admins':
+                $admin_items = db_get_admin_list();
+                if($admin_items != false) {
+                    show_admins($admin_items);
+                } else {
+                    echo 'err';
+                }
                 break;
             case 'quoteItem':
                 show_items();

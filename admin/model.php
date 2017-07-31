@@ -2,7 +2,7 @@
 
 function db_object() {
 	try {
-    	$db = new PDO("mysql:host=localhost;dbname=quotesys;charset=utf8","admin","");
+    	$db = new PDO("mysql:host=localhost;dbname=quotesys;charset=utf8","root","");
     	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     } catch (PDOException  $e ) {
         $_SESSION['error'] = $e;
@@ -38,13 +38,31 @@ function db_authenticate($u, $p) {
 	}
 }
 
+function db_get_admin_list() {
+    $conn = db_object();
+	if($conn == false) {
+		return false;
+	}
+
+	$sql = "SELECT * FROM ACL";
+
+	try {
+		$res = $conn->prepare($sql);
+		$res->execute();
+    } catch (PDOException  $e ) {
+        $_SESSION['error'] = $e;
+		return false;
+	}
+    return $res->fetchAll(PDO::FETCH_ASSOC);	
+}
+
 function db_get_quotation_list() {
 	$conn = db_object();
 	if($conn == false) {
 		return false;
 	}
 
-	$sql = "SELECT * FROM quotation";
+	$sql = "SELECT * FROM quotation, customer WHERE quotation.quote_cust_id = customer.cust_id ORDER BY quate_created";
 
 	try {
 		$res = $conn->prepare($sql);
