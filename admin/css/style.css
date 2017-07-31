@@ -2,34 +2,42 @@
     font-family: Avantgarde;
     src: url('../../fonts/ITC Avant Garde Gothic LT Book Regular.otf');
 }
+
 @font-face {
     font-family: AvantgardeBlack;
     src: url('../../fonts/ITC Avant Garde Gothic LT Bold.otf');
 }
+
 * {
     border: 0;
     padding: 0;
     margin: 0;
 }
-a{
+
+a {
 	color: maroon;
 	text-decoration: none;
 }
+
 a:hover {
 	text-decoration: underline;
 }
+
 a:active {
 	color: red;
 }
+
 h1 {
     font-family: AvantgardeBlack;
 }
+
 body {
     background: linear-gradient(to bottom right, whitesmoke, blanchedalmond);
     font-family: Avantgarde;
     letter-spacing: .02em;
     box-shadow: .1em .1em .1em .1em darkgray;
 }
+
 header {
     font-family: AvantgardeBlack;
     height: 10em;
@@ -38,60 +46,106 @@ header {
     background-repeat: no-repeat;
     background-position: top center;
 }
+
 aside {
 	margin: 0 auto;
    	width: 80%;
 }
+
 nav {
     background: blanchedalmond;
     height: 2em;
     box-shadow: .1em .1em .1em .1em darkgray;
 }
+
 nav li {
 	display: inline-block;
 	padding: .5em 2em .5em 2em;
 	list-style: none;	
 }
+
 footer {
     background: blanchedalmond;
     box-shadow: .1em .1em .1em .1em darkgray;
 }
+
 section{
 	padding: 2em;
 }
+
 fieldset {
     width: 60%;
     margin: 0 auto;
     box-shadow: .1em .1em .1em .1em darkgray;
     background: white;
 }
+
 fieldset main {
     font-family: AvantgardeBlack;
     padding: .4em .3em .3em .3em;
     background: blanchedalmond;
 }
+
 form {
     padding: 2em;
 } 
+
 form div {
     display: block;
 }
+
 label {
     padding: .5em;
     display: inline-block;
     width: 30%;
 }
+
 input {
     padding: .5em;
     display: inline-block;
     box-shadow: .1em .1em .1em .1em darkgray;
 }
+
 input:focus {
     background: blanchedalmond;
 }
+
 input[type=submit] {
     background: blanchedalmond;
     padding: .3em;
     margin: 1em 0 0 .5em;
     display: block;
+}
+
+#modal_background {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: black;
+    opacity: .9; 
+}
+
+#modal {
+    display: none;
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    left: 15%;
+    background: white; 
+    padding: 1em;
+}
+
+#edit_customer {
+    display: none;
+}
+ 
+#line_item {
+    display: none;
+}
+
+#admin {
+    display: none;
 }

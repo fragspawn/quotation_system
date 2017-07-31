@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2017 at 10:30 PM
+-- Generation Time: Jul 31, 2017 at 09:19 PM
 -- Server version: 10.1.20-MariaDB
 -- PHP Version: 7.0.15
 
@@ -49,7 +49,7 @@ INSERT INTO `ACL` (`user_id`, `username`, `password`, `state`) VALUES
 
 CREATE TABLE `customer` (
   `cust_id` int(11) NOT NULL,
-  `name` int(128) NOT NULL,
+  `name` varchar(128) NOT NULL,
   `phone` varchar(16) NOT NULL,
   `email` varchar(512) NOT NULL,
   `address_1` varchar(256) NOT NULL,
@@ -59,6 +59,13 @@ CREATE TABLE `customer` (
   `postcode` varchar(4) NOT NULL,
   `session_id` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cust_id`, `name`, `phone`, `email`, `address_1`, `address_2`, `suburb`, `state`, `postcode`, `session_id`) VALUES
+(1, 'Dianne Francis', '123412341234', 'df@df.com', 'asdf st', '', 'mulgawie', 'QLD', '4721', '13245sfasd12345asdfo945lkjfn7');
 
 -- --------------------------------------------------------
 
@@ -113,6 +120,13 @@ CREATE TABLE `quotation` (
   `quate_created` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `total_cost` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `quotation`
+--
+
+INSERT INTO `quotation` (`quote_id`, `quote_cust_id`, `quate_created`, `total_cost`) VALUES
+(1, 1, '0000-00-00 00:00:00', 123443);
 
 -- --------------------------------------------------------
 
@@ -176,7 +190,7 @@ ALTER TABLE `ACL`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `cust_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `line_item`
 --
@@ -186,7 +200,7 @@ ALTER TABLE `line_item`
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `quote_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `quote_lines`
 --
