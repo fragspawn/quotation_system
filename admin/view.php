@@ -104,37 +104,39 @@ function hidden_components() {
                     <input type="hidden" name="cust_id" id="cust_id">
                     <div>
                         <label>Full Name</label>
-                        <input type="text" name="full_name" id="full_name">
+                        <input type="text" name="full_name" id="full_name" disabled>
                     </div>
                     <div>
                         <label>Phone</label>
-                        <input type="text" name="phone" size="16" id="phone">
+                        <input type="text" name="phone" size="16" id="phone" disabled>
                     </div>
                     <div>
                         <label>E-Mail</label>
-                        <input type="email" name="email" id="email">
+                        <input type="email" name="email" id="email" disabled>
                     </div>
                     <div>
                         <label>Address Line 1</label>
-                        <input type="text" name="address_1" id="address_1">
+                        <input type="text" name="address_1" id="address_1" disabled>
                     </div>
                     <div>
                         <label>Address Line 2</label>
-                        <input type="text" name="address_2" id="address_2">
+                        <input type="text" name="address_2" id="address_2" disabled>
                     </div>
                     <div>
                         <label>Suburb</label>
-                        <input type="text" name="suburb" id="suburb">
+                        <input type="text" name="suburb" id="suburb" disabled>
                     </div>
                     <div>
                         <label>State</label>
-                        <input type="text" name="state" size="3" id="state">
+                        <input type="text" name="state" size="3" id="state" disabled>
                     </div>
                     <div>
                         <label>Postcode</label>
-                        <input type="number" name="postcode" size="4" id="postcode">
+                        <input type="number" name="postcode" size="4" id="postcode" disabled>
                     </div>
                     <div>
+                        <input type="button" value="cancel" onClick="hideAllModals()">
+                    </div>                           
                 </form>
             </main>
         </fieldset>
@@ -203,6 +205,11 @@ function hidden_components() {
                         <label>Enabled</label>
                         <input type="checkbox" name="enabled" id="enabled" checked> 
                     </div>
+                    <div>
+                        <input type="button" value="edit" class="addedit" id="editlineitem" onClick="validateForm(this)">
+                        <input type="button" value="add" class="addedit" id="addlineitem" onClick="validateForm(this)">
+                        <input type="button" value="cancel" onClick="hideAllModals()">
+                    </div>   
                 </form>
             </main>
         </fieldset>
@@ -224,6 +231,11 @@ function hidden_components() {
                         <label>Enabled</label>
                         <input type="checkbox" name="state" id="state" checked>
                     </div>
+                    <div>
+                        <input type="button" value="edit" class="addedit" id="editadmin" onClick="validateForm(this)">
+                        <input type="button" value="add" class="addedit" id="addadmin" onClick="validateForm(this)">
+                        <input type="button" value="cancel" onClick="hideAllModals()">
+                    </div>   
                 </form>
             </main>
         </fieldset>
@@ -232,41 +244,40 @@ function hidden_components() {
 } // end hidden Components
 
 function show_line_items($items) {
-    echo'<fieldset><main>Line Item</main>';
+    echo'<fieldset><main>Line Items <a href="#" onClick="showModal(\'add_line_item\', 0)">(add)</a></main>';
     foreach($items as $item) {
         echo '<div>';
-        echo '<span><input type="checkbox" name="enable_line_item"';
+        echo '<span><input type="checkbox" name="enable_line_item" onClick="enableDisableLineItem(this)" value ="' . $item['line_item_id'] . '"';
         if($item['enabled'] == 1) { 
             echo ' checked>';
         } else {
             echo '>';
         }
         echo '</span>';
-
-
         echo '<span>' . $item['name'] . '</span><span>' . $item['units'] . '</span>';
         echo '<span><a href="#" onClick="showModal(\'edit_line_item\', ' . $item['line_item_id'] . ')">edit</a></span>';
-        echo '<div>';
+        echo '</div>';
     }
     echo'</fieldset>';
 }
 
 function show_quotes($items) {
-    echo'<fieldset><main>Line Item</main>';
+    echo'<fieldset><main>Quote Items</main>';
     foreach($items as $item) {
         echo '<div>';
         echo '<span>' . $item['name'] . '</span><span>' . number_format($item['total_cost'], 2, '.', ',') . '</span>';
-        echo '<span><a href="#" onClick="showModal(\'view_quote\', ' . $item['quote_id'] . ')">detail</a></span>';
-        echo '<div>';
+        echo '<span><a href="#" onClick="showModal(\'view_quote\', ' . $item['quote_id'] . ')">quote detail</a></span>';
+        echo '<span><a href="#" onClick="showModal(\'view_cust\', ' . $item['cust_id'] . ')">cust detail</a></span>';
+        echo '</div>';
     }
     echo'</fieldset>';
 }
 
 function show_admins($items) {
-    echo'<fieldset><main>Line Item</main>';
+    echo'<fieldset><main>Admins <a href="#" onClick="showModal(\'add_admin\', 0)">(add)</a></main>';
     foreach($items as $item) {
         echo '<div>';
-        echo '<span><input type="checkbox" name="enable_admin"';
+        echo '<span><input type="checkbox" name="enable_admin" onClick="enableDisableAdmin(this)" ';
         if($item['state'] == 1) { 
             echo ' checked>';
         } else {
@@ -275,7 +286,7 @@ function show_admins($items) {
         echo '</span>';
         echo '<span>' . $item['username'] . '</span><span>' . $item['password'] . '</span>';
         echo '<span><a href="#" onClick="showModal(\'edit_admin\', ' . $item['user_id'] . ')">edit</a></span>';
-        echo '<div>';
+        echo '</div>';
     }
     echo'</fieldset>';
 }
