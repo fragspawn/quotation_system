@@ -277,7 +277,7 @@ function show_admins($items) {
     echo'<fieldset><main>Admins <a href="#" onClick="showModal(\'add_admin\', 0)">(add)</a></main>';
     foreach($items as $item) {
         echo '<div>';
-        echo '<span><input type="checkbox" name="enable_admin" onClick="enableDisableAdmin(this)" ';
+        echo '<span><input type="checkbox" name="enable_admin" onClick="enableDisableAdmin(this)" value="' . $item['user_id'] . '"';
         if($item['state'] == 1) { 
             echo ' checked>';
         } else {

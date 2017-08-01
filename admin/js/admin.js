@@ -9,6 +9,7 @@
         if(funcCall == 'edit_line_item') {
             document.getElementById('line_item').style.display = 'block';
             document.getElementById('editlineitem').style.display = 'inline';
+            getSingleLineItem(indexVal);
         }
         if(funcCall == 'add_line_item') {
             document.getElementById('line_item').style.display = 'block';
@@ -23,11 +24,34 @@
         if(funcCall == 'edit_admin') {
             document.getElementById('admin').style.display = 'block';
             document.getElementById('editadmin').style.display = 'inline';
+            getSingleAdmin(indexVal);
         }
         if(funcCall == 'add_admin') {
             document.getElementById('admin').style.display = 'block';
             document.getElementById('addadmin').style.display = 'inline';
         }
+    }
+
+    function getSingleLineItem(keyVal) {
+        $.ajax({
+            url: 'ws.php?state=getLineItem&index=' + keyVal,
+            method: 'GET',
+            datatype: 'json',
+            success: function(data) {
+                console.log(data[0]);
+            }
+        });
+    }
+
+    function getSingleAdmin(keyVal) {
+        $.ajax({
+            url: 'ws.php?state=getAdmin&index=' + keyVal,
+            method: 'GET',
+            datatype: 'json',
+            success: function(data) {
+                console.log(data[0]);
+            }
+        });
     }
 
     function hideAllModals() {
@@ -92,6 +116,16 @@
         } else {
             enabled = '0';
         }
+
+        $.ajax({
+            url: "ws.php?state=enableLineItem&index=" + checkedItem.value,
+            method: 'POST',
+            data: {'enabled': enabled },
+            datatype: 'json',
+            success: function(data){
+ //               console.log(data);
+            }
+        });
     }
     
     function enableDisableAdmin(checkedItem) {
@@ -101,4 +135,14 @@
         } else {
             enabled = '0';
         }
+
+        $.ajax({
+            url: "ws.php?state=enableAdmin&index=" + checkedItem.value,
+            method: 'POST',
+            data: {'enabled': enabled },
+            datatype: 'json',
+            success: function(data){
+//                console.log(data);
+            }
+        });
     }

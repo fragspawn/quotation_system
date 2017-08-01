@@ -56,6 +56,25 @@ function db_get_admin_list() {
     return $res->fetchAll(PDO::FETCH_ASSOC);	
 }
 
+function db_get_admin($key) {
+    $conn = db_object();
+	if($conn == false) {
+		return false;
+	}
+
+	$sql = "SELECT * FROM ACL WHERE user_id = :uid";
+
+	try {
+		$res = $conn->prepare($sql);
+		$res->bindParam(':uid', $key);	
+		$res->execute();
+    } catch (PDOException  $e ) {
+        $_SESSION['error'] = $e;
+		return false;
+	}
+    return $res->fetchAll(PDO::FETCH_ASSOC);	
+}
+
 function db_get_quotation_list() {
 	$conn = db_object();
 	if($conn == false) {
@@ -213,43 +232,43 @@ function db_update_line_item($key, $data_array) {
     return true; 
 }
 
-function db_disable_line_item($key) {
+function db_disable_line_item($key, $state) {
 	$conn = db_object();
 	if($conn == false) {
 		return false;
 	}
 
-	$sql = "UPDATE line_item SET enabled = 1 WHERE line_item_id = :litid";
+	$sql = "UPDATE line_item SET enabled = :state  WHERE line_item_id = :id";
 
 	try {
 		$res = $conn->prepare($sql);
-		$res->bindParam(':litid', $key);	
+		$res->bindParam(':state', $state);
+		$res->bindParam(':id', $key);	
 		$res->execute();
     } catch (PDOException  $e ) {
         $_SESSION['error'] = $e;
 		return false;
 	}
-    
     return true; 
 }
 
-function db_enable_line_item($key) {
+function db_disable_admin($key, $state) {
 	$conn = db_object();
 	if($conn == false) {
 		return false;
 	}
 
-	$sql = "UPDATE line_item SET enabled = 0 WHERE line_item_id = :litid";
+	$sql = "UPDATE ACL SET state = :state  WHERE user_id = :id";
 
 	try {
 		$res = $conn->prepare($sql);
-		$res->bindParam(':litid', $key);	
+		$res->bindParam(':state', $state);
+		$res->bindParam(':id', $key);	
 		$res->execute();
     } catch (PDOException  $e ) {
         $_SESSION['error'] = $e;
 		return false;
 	}
-
     return true; 
 }
 
