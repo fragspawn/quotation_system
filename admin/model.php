@@ -202,20 +202,20 @@ function db_insert_line_item($data_array) {
 
 	try {
 		$res = $conn->prepare($sql);
-		$res->bindParam(':name', $data_array['']);	
-		$res->bindParam(':sysname',  $data_array['']);
-		$res->bindParam(':desc',  $data_array['']);
-		$res->bindParam(':is', $data_array['']);
-		$res->bindParam(':im', $data_array['']);
-		$res->bindParam(':il', $data_array['']);
-		$res->bindParam(':units', $data_array['']);
-		$res->bindParam(':inc', $data_array['']);
-		$res->bindParam(':cost', $data_array['']);
-		$res->bindParam(':unsm', $data_array['']);
-		$res->bindParam(':unme', $data_array['']);
-		$res->bindParam(':unlg', $data_array['']);
-		$res->bindParam(':unmin', $data_array['']);
-		$res->bindParam(':unmax', $data_array['']);
+		$res->bindParam(':name', $data_array['item_name']);	
+		$res->bindParam(':sysname',  $data_array['system_name']);
+		$res->bindParam(':desc',  $data_array['description']);
+		$res->bindParam(':is', $data_array['image_small']);
+		$res->bindParam(':im', $data_array['image_medium']);
+		$res->bindParam(':il', $data_array['image_large']);
+		$res->bindParam(':units', $data_array['units']);
+		$res->bindParam(':inc', $data_array['unit_increment']);
+		$res->bindParam(':cost', $data_array['unit_cost']);
+		$res->bindParam(':unsm', $data_array['units_small']);
+		$res->bindParam(':unme', $data_array['units_medium']);
+		$res->bindParam(':unlg', $data_array['units_large']);
+		$res->bindParam(':unmin', $data_array['units_min']);
+		$res->bindParam(':unmax', $data_array['units_max']);
 		$res->execute();
     } catch (PDOException  $e ) {
         $_SESSION['error'] = $e;
@@ -250,20 +250,20 @@ function db_update_line_item($key, $data_array) {
 
 	try {
 		$res = $conn->prepare($sql);
-		$res->bindParam(':name', $data_array['']);	
-		$res->bindParam(':sysname',  $data_array['']);
-		$res->bindParam(':desc',  $data_array['']);
-		$res->bindParam(':is', $data_array['']);
-		$res->bindParam(':im', $data_array['']);
-		$res->bindParam(':il', $data_array['']);
-		$res->bindParam(':units', $data_array['']);
-		$res->bindParam(':inc', $data_array['']);
-		$res->bindParam(':cost', $data_array['']);
-		$res->bindParam(':unsm', $data_array['']);
-		$res->bindParam(':unme', $data_array['']);
-		$res->bindParam(':unlg', $data_array['']);
-		$res->bindParam(':unmin', $data_array['']);
-		$res->bindParam(':unmax', $data_array['']);
+		$res->bindParam(':name', $data_array['item_name']);	
+		$res->bindParam(':sysname',  $data_array['system_name']);
+		$res->bindParam(':desc',  $data_array['description']);
+		$res->bindParam(':is', $data_array['image_small']);
+		$res->bindParam(':im', $data_array['image_medium']);
+		$res->bindParam(':il', $data_array['image_large']);
+		$res->bindParam(':units', $data_array['units']);
+		$res->bindParam(':inc', $data_array['unit_increment']);
+		$res->bindParam(':cost', $data_array['unit_cost']);
+		$res->bindParam(':unsm', $data_array['units_small']);
+		$res->bindParam(':unme', $data_array['units_medium']);
+		$res->bindParam(':unlg', $data_array['units_large']);
+		$res->bindParam(':unmin', $data_array['units_min']);
+		$res->bindParam(':unmax', $data_array['units_max']);
 		$res->bindParam(':primarykey', $key);
 		$res->execute();
     } catch (PDOException  $e ) {
@@ -313,5 +313,25 @@ function db_disable_admin($key, $state) {
 	}
     return true; 
 }
+
+function db_get_customer($key) {
+    $conn = db_object();
+    if($conn == false) {
+        return false;
+    }
+
+    $sql = "SELECT * FROM customer WHERE cust_id = :custid";
+
+    try {
+        $res = $conn->prepare($sql);
+        $res->bindParam(':custid', $key);
+        $res->execute();
+    } catch (PDOException  $e ) {
+        $_SESSION['error'] = $e;
+        return false;
+    }
+    return $res->fetchAll(PDO::FETCH_ASSOC);
+}
+
 
 ?>

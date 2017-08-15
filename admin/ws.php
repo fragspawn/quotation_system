@@ -46,7 +46,7 @@
                     }
                     break;
                 case 'updateAdmin':
-                    $formdata['username'] = util_validity_check($_POST['username'], '[A-Za-z0-9]');
+                    $formdata['usern<F2><F2><F2><F2><F2>ame'] = util_validity_check($_POST['username'], '[A-Za-z0-9]');
                     $formdata['password'] = util_validity_check($_POST['password'], '[A-Za-z0-9]'); 
                     $result = db_update_admin($primary_key, $formdata);
                     if($result != false) {
@@ -64,7 +64,20 @@
                     }
                     break;
                 case 'addLineItem':
-                    // Sanitise $_POST data
+                    $formdata['item_name'] = util_validity_check($_POST['item_name'], '[A-Za-z0-9]');
+                    $formdata['system_name'] = util_validity_check($_POST['system_name'], '[A-Za-z0-9]');
+                    $formdata['description'] = util_validity_check($_POST['description'], '[A-Za-z0-9]');
+                    $formdata['image_small'] = util_validity_check($_POST['image_small'], '[A-Za-z0-9]');
+                    $formdata['image_medium'] = util_validity_check($_POST['image_medium'], '[A-Za-z0-9]');
+                    $formdata['image_large'] = util_validity_check($_POST['image_large'], '[A-Za-z0-9]');
+                    $formdata['units'] = util_validity_check($_POST['units'], '[A-Za-z0-9]');
+                    $formdata['unit_increment'] = util_validity_check($_POST['unit_increment'], '[A-Za-z0-9]');
+                    $formdata['unit_cost'] = util_validity_check($_POST['unit_cost'], '[A-Za-z0-9]');
+                    $formdata['units_small'] = util_validity_check($_POST['units_small'], '[A-Za-z0-9]');
+                    $formdata['units_medium'] = util_validity_check($_POST['units_medium'], '[A-Za-z0-9]');
+                    $formdata['units_large'] = util_validity_check($_POST['units_large'], '[A-Za-z0-9]');
+                    $formdata['units_min'] = util_validity_check($_POST['units_min'], '[A-Za-z0-9]');
+                    $formdata['units_max'] = util_validity_check($_POST['units_max'], '[A-Za-z0-9]');
                     $result = db_insert_line_item($formdata);
                     if($result != false) {
                         echo json_encode(array('state'=>'success'));
@@ -73,13 +86,38 @@
                     }
                     break;
                 case 'updateLineItem':
-                    // Sanitise $_POST data
-                    $result = db_update_line_item($primary_key, $formdata); 
+                    $post_primary_key = util_validity_check($_POST['line_item_id'], '[0-9]');
+                    $formdata['item_name'] = util_validity_check($_POST['item_name'], '[A-Za-z0-9]');
+                    $formdata['system_name'] = util_validity_check($_POST['system_name'], '[A-Za-z0-9]');
+                    $formdata['description'] = util_validity_check($_POST['description'], '[A-Za-z0-9]');
+                    $formdata['image_small'] = util_validity_check($_POST['image_small'], '[A-Za-z0-9]');
+                    $formdata['image_medium'] = util_validity_check($_POST['image_medium'], '[A-Za-z0-9]');
+                    $formdata['image_large'] = util_validity_check($_POST['image_large'], '[A-Za-z0-9]');
+                    $formdata['units'] = util_validity_check($_POST['units'], '[A-Za-z0-9]');
+                    $formdata['unit_increment'] = util_validity_check($_POST['unit_increment'], '[A-Za-z0-9]');
+                    $formdata['unit_cost'] = util_validity_check($_POST['unit_cost'], '[A-Za-z0-9]');
+                    $formdata['units_small'] = util_validity_check($_POST['units_small'], '[A-Za-z0-9]');
+                    $formdata['units_medium'] = util_validity_check($_POST['units_medium'], '[A-Za-z0-9]');
+                    $formdata['units_large'] = util_validity_check($_POST['units_large'], '[A-Za-z0-9]');
+                    $formdata['units_min'] = util_validity_check($_POST['units_min'], '[A-Za-z0-9]');
+                    $formdata['units_max'] = util_validity_check($_POST['units_max'], '[A-Za-z0-9]');
+                    $result = db_update_line_item($post_primary_key, $formdata); 
                     if($result != false) {
                         echo json_encode(array('state'=>'success'));
                     } else {
                         echo json_encode(array('state'=>'updateLineItemErr'));
                     }
+                    break;
+                case 'getCustomer':
+                    $result = db_get_customer($primary_key);
+                    if($result != false) {
+                        echo json_encode($result);
+                    } else {
+                        echo json_encode(array('state'=>'getAdminErr'));
+                    }
+                    break;
+                case 'getQuote':
+                    echo json_encode(array('state'=>'success'));
                     break;
                 default:
                     echo json_encode(array('state'=>'err'));

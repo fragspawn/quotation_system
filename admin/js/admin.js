@@ -17,9 +17,11 @@
         }
         if(funcCall == 'view_quote') {
             document.getElementById('edit_customer').style.display = 'block';
+            getQuote(indexVal);
         }
         if(funcCall == 'view_cust') {
             document.getElementById('edit_customer').style.display = 'block';
+            getCust(indexVal);
         }
         if(funcCall == 'edit_admin') {
             document.getElementById('admin').style.display = 'block';
@@ -115,7 +117,7 @@
             data: $('#line_item_form').serialize(),
             datatype: 'json',
             success: function(data){
-                console.log(data);
+                //console.log(data);
                 hideAllModals();
             }
         });
@@ -148,7 +150,27 @@
                 hideAllModals();
             }
         });
+    }
 
+    function getQuote(custID) {
+    }
+
+    function getCust(custID) {
+        $.ajax({
+            url: 'ws.php?state=getCustomer&index=' + custID,
+            method: 'GET',
+            datatype: 'json',
+            success: function(data) {
+                full_name.value = data[0]['name'];
+                phone.value = data[0]['phone'];
+                email.value = data[0]['email'];
+                address_1.value = data[0]['address_1'];
+                address_2.value = data[0]['address_2'];
+                suburb.value = data[0]['suburb'];
+                state.value = data[0]['state'];
+                postcode.value = data[0]['postcode'];
+            }
+        });
     }
 
     function validateForm(buttonPress) {
