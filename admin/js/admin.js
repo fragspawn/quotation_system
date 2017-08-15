@@ -141,7 +141,7 @@
         $.ajax({
             url: "ws.php?state=addAdmin",
             method: 'POST',
-            data: $('#adminForm').serialize(),
+            data: $('#admin_form').serialize(),
             datatype: 'json',
             success: function(data){
                 console.log(data);

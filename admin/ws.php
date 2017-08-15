@@ -36,10 +36,24 @@
                     }
                     break;
                 case 'addAdmin':
-                    echo json_encode(array('state'=>'addAdminErr'));
+                    $formdata['username'] = util_validity_check($_POST['username'], '[A-Za-z0-9]');
+                    $formdata['password'] = util_validity_check($_POST['password'], '[A-Za-z0-9]'); 
+                    $result = db_add_admin($formdata);
+                    if($result != false) {
+                        echo json_encode(array('state'=>'success'));
+                    } else {
+                        echo json_encode(array('state'=>'addAdminErr'));
+                    }
                     break;
                 case 'updateAdmin':
-                    echo json_encode(array('state'=>'updateAdminErr'));
+                    $formdata['username'] = util_validity_check($_POST['username'], '[A-Za-z0-9]');
+                    $formdata['password'] = util_validity_check($_POST['password'], '[A-Za-z0-9]'); 
+                    $result = db_update_admin($primary_key, $formdata);
+                    if($result != false) {
+                        echo json_encode(array('state'=>'success'));
+                    } else {
+                        echo json_encode(array('state'=>'updateAdminErr'));
+                    }
                     break;
                 case 'getLineItem':
                     $result = db_get_line_item($primary_key);
@@ -50,10 +64,22 @@
                     }
                     break;
                 case 'addLineItem':
-                    echo json_encode(array('state'=>'addLineItemErr'));
+                    // Sanitise $_POST data
+                    $result = db_insert_line_item($formdata);
+                    if($result != false) {
+                        echo json_encode(array('state'=>'success'));
+                    } else {
+                        echo json_encode(array('state'=>'addLineItemErr'));
+                    }
                     break;
                 case 'updateLineItem':
-                    echo json_encode(array('state'=>'updateLineItemErr'));
+                    // Sanitise $_POST data
+                    $result = db_update_line_item($primary_key, $formdata); 
+                    if($result != false) {
+                        echo json_encode(array('state'=>'success'));
+                    } else {
+                        echo json_encode(array('state'=>'updateLineItemErr'));
+                    }
                     break;
                 default:
                     echo json_encode(array('state'=>'err'));

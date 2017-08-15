@@ -75,6 +75,48 @@ function db_get_admin($key) {
     return $res->fetchAll(PDO::FETCH_ASSOC);	
 }
 
+function db_add_admin($formsubmit) {
+	$conn = db_object();
+	if($conn == false) {
+		return false;
+	}
+
+    $sql = "INSERT INTO ACL (username, password, state) VALUES (:username, :password, '1')";
+    try {
+        $res = $conn->prepare($sql);
+        $res->bindParam(':username', $formsubmit['username']);
+        $res->bindParam(':password',  $formsubmit['password']);
+        $res->execute();
+    } catch (PDOException  $e ) {
+        $_SESSION['error'] = $e;
+        return false;
+    }
+
+    return true;
+}
+
+function db_update_admin($key, $formdata) {
+	$conn = db_object();
+	if($conn == false) {
+		return false;
+	}
+
+    $sql = "UPDATE ACL SET username = :username, password = :password, state = '1' WHERE user_id = :userid";
+
+    try {
+        $res = $conn->prepare($sql);
+        $res->bindParam(':username', $formdata['username']);
+        $res->bindParam(':password',  $formdata['password']);
+        $res->bindParam(':userid',  $key);
+        $res->execute();
+    } catch (PDOException  $e ) {
+        $_SESSION['error'] = $e;
+        return false;
+    }
+
+    return true;
+}
+
 function db_get_quotation_list() {
 	$conn = db_object();
 	if($conn == false) {
