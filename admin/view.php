@@ -143,7 +143,7 @@ function hidden_components() {
 
         <fieldset id="line_item">
             <main>Line Item</main>
-                <form>
+                <form id="line_item_form">
                     <input type="hidden" name="line_item_id" id="line_item_id">
                     <div>
                         <label>Line Item Title</label>
@@ -183,11 +183,11 @@ function hidden_components() {
                     </div>
                     <div>
                         <label>Units Small</label>
-                        <input type="number" name="units_small">
+                        <input type="number" name="units_small" id="units_small">
                     </div>
                     <div>
                         <label>Units Medium</label>
-                        <input type="number" name="units_medium">
+                        <input type="number" name="units_medium" id="units_medium">
                     </div>
                     <div>
                         <label>Units Large</label>
@@ -217,8 +217,8 @@ function hidden_components() {
 
         <fieldset id="admin">
             <main>Administrator</main>
-                <form>
-                    <input type="hidden" name="user_id">
+                <form id="admin_form">
+                    <input type="hidden" name="user_id" id="user_id">
                     <div>
                         <label>Username</label>
                         <input type="text" name="username" id="username">

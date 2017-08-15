@@ -35,6 +35,12 @@
                         echo json_encode(array('state'=>'getAdminErr'));
                     }
                     break;
+                case 'addAdmin':
+                    echo json_encode(array('state'=>'addAdminErr'));
+                    break;
+                case 'updateAdmin':
+                    echo json_encode(array('state'=>'updateAdminErr'));
+                    break;
                 case 'getLineItem':
                     $result = db_get_line_item($primary_key);
                     if($result != false) {
@@ -42,6 +48,12 @@
                     } else {
                         echo json_encode(array('state'=>'getLineItemErr'));
                     }
+                    break;
+                case 'addLineItem':
+                    echo json_encode(array('state'=>'addLineItemErr'));
+                    break;
+                case 'updateLineItem':
+                    echo json_encode(array('state'=>'updateLineItemErr'));
                     break;
                 default:
                     echo json_encode(array('state'=>'err'));
