@@ -244,9 +244,9 @@ function db_update_line_item($key, $data_array) {
         units_medium = :unme, 
         units_large = :unlg, 
         units_min = :unmin, 
-        units_max :unmax, 
+        units_max = :unmax, 
         enabled = 1
-    WHERE line_item_id` = :primarykey";
+    WHERE line_item_id = :primarykey";
 
 	try {
 		$res = $conn->prepare($sql);
@@ -264,13 +264,13 @@ function db_update_line_item($key, $data_array) {
 		$res->bindParam(':unlg', $data_array['units_large']);
 		$res->bindParam(':unmin', $data_array['units_min']);
 		$res->bindParam(':unmax', $data_array['units_max']);
-		$res->bindParam(':primarykey', $key);
+		$res->bindParam(':primarykey', $key, PDO::PARAM_INT);
 		$res->execute();
     } catch (PDOException  $e ) {
         $_SESSION['error'] = $e;
+echo $e; die();
 		return false;
 	}
-    
     return true; 
 }
 
