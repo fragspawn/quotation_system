@@ -9,3 +9,6 @@ ws:       The public-facing Web Service that handles delivery of qutation inform
 planning: Project specification
 ajax:     The public frontend
 
+TODO:
+Public Interface using Knockout, JQuery and materializecss.com 
+Admin: complete AJAX for all database interactions
