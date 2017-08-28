@@ -1,7 +1,9 @@
 # quotation_system
 Write a JS-based quotation system with web service backend
 
-This is a PHP/MySQL implementation making use of CDN-based JQuery and Knockout.js enhancing the front-end
+http://github.com/fragspawn/quotation_system
+
+This is a PHP/MySQL implementation making use of CDN-based JQuery and Knockout.js & snapsvg.io enhancing the front-end
 
 sql:      Folder contains schema and data, and is required for operation
 admin:    The password protected admin interface allows manipulation and viewing of persistent data

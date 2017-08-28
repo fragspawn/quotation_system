@@ -88,7 +88,7 @@ function db_add_admin($formsubmit) {
         $res->bindParam(':password',  $formsubmit['password']);
         $res->execute();
     } catch (PDOException  $e ) {
-        $_SESSION['error'] = $e;
+        $_SESSION['error'] .= $e;
         return false;
     }
 

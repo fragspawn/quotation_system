@@ -30,6 +30,7 @@ function show_footer() {
                 <?php echo '<p>SESSION: ' . var_dump($_SESSION) . '</p>'; ?>
                 <?php 
                     if(isset($_SESSION['error'])) {
+                        echo $_SESSION['error'];
                         unset($_SESSION['error']);
                     }
                 ?>
