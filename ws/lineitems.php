@@ -23,6 +23,9 @@
     header('Content-Type: application/json');
     echo json_encode($result);    
 
+
+// To incorporate into WS:
+
     function insert_quotation() {
         $conn = db_object();
         $sql = "INSERT INTO customer (name, phone, email, address_1, address_2, suburb, state, postcode, session_id) VALUES ('asdf', '1234', 'asdf@asdf.com', '11 asdf st', 'asdf', 'asdf', 'qld', '4000', '01293u54lkno0135kjsf0u');";

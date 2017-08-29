@@ -24,7 +24,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
 
         <style>
-            * {
+            :root {
                 font-family: 'Roboto', sans-serif;
             }   
             .moo {
@@ -50,7 +50,7 @@
                 });
                 // datepicker;
                 $( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
-            }
+            };
         </script>
     </head>
     <body>
