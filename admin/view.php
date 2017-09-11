@@ -30,7 +30,7 @@ function show_footer() {
                 <?php echo '<p>SESSION: ' . var_dump($_SESSION) . '</p>'; ?>
                 <?php 
                     if(isset($_SESSION['error'])) {
-                        echo $_SESSION['error'];
+                        echo '### ' . $_SESSION['error'] . ' ###';
                         unset($_SESSION['error']);
                     }
                 ?>
@@ -226,7 +226,7 @@ function hidden_components() {
                     </div>
                     <div>
                         <label>Password</label>
-                        <input type="password" name="password" value="foobarfoobar" id="password">
+                        <input type="password" name="password" placeholder="New Password" id="password">
                     </div>
                     <div>
                         <label>Enabled</label>
@@ -243,7 +243,6 @@ function hidden_components() {
     </aside> <!-- end modals -->
 <?php
 } // end hidden Components
-
 function show_line_items($items) {
     echo'<fieldset><main>Line Items <a href="#" onClick="showModal(\'add_line_item\', 0)">(add)</a></main>';
     foreach($items as $item) {
@@ -285,11 +284,14 @@ function show_admins($items) {
             echo '>';
         }
         echo '</span>';
-        echo '<span>' . $item['username'] . '</span><span>' . $item['password'] . '</span>';
+        echo '<span>' . $item['username'] . '</span>';
         echo '<span><a href="#" onClick="showModal(\'edit_admin\', ' . $item['user_id'] . ')">edit</a></span>';
         echo '</div>';
     }
     echo'</fieldset>';
 }
 
+function show_secure() {
+    // don't know what to do here...
+}
 ?>

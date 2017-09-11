@@ -22,6 +22,11 @@
             } 
         }    
     }
+    // Logout
+    if($state == 'logout') {
+        session_destroy();
+        header('Location:index.php');
+    }
 
     // Page Start
     show_header($state);
@@ -82,10 +87,6 @@
                     break;
                 case 'disableItem':
                     enable_item($_GET['item']);
-                    break;
-                case 'logout':
-                    session_destroy();
-                    header('Location:index.php');
                     break;
                 default:
                     show_secure();

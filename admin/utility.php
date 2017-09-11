@@ -20,15 +20,12 @@ function util_validity_check($untrusted, $regex) {
 
     $trusted = preg_replace('/<\?*(.*?)\?>/is', "", $trusted);
     $trusted = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $trusted);
-    $trusted = preg_replace('<!--*-->', '', $trusted); 
-    $trusted = preg_replace('/\/\/(.*?)/is', "", $trusted);
 
     $trusted = strip_tags($trusted);
     $trusted = htmlspecialchars($trusted);
     $trusted = trim($trusted); 
 
-// do a regex
-    
+// todo regex
     return $trusted;
 
 }
@@ -42,14 +39,13 @@ function util_validity_check($untrusted, $regex) {
  * PHP is one of the few languages that get this right.
  * Can you find the technique for encrypting passwords
  * SECURELY?
- *  MD5
- *  SHA256
+ *  MD5 & SHA256 are not secure!
  *  
  */
 
 function encrypt_password($p) {
     // Option 2
-    $new_p = hash($p, 'The quick brown fox jumped over the lazy dog.');
+    $new_p = base64_encode(hash('sha512', $p, 'The quick brown fox jumped over the lazy dog.'));
     return $new_p;
 }
 
