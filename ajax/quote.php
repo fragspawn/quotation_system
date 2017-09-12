@@ -10,14 +10,16 @@
           crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<!-- Knockout -->
+<!-- Knockout 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+-->
+<!-- Vue --> 
+        <script src="https://unpkg.com/vue@2.4.2/dist/vue.js"></script>
 <!-- Materialize -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
 <!-- Snap SVG -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/snap.svg/0.5.1/snap.svg-min.js"></script>
-
         <style>
             :root {
                 font-family: 'Roboto', sans-serif;
@@ -45,26 +47,29 @@
                 // datepicker;
                 $( "#datepicker" ).datepicker({ minDate: -20, maxDate: "+1M +10D" });
             };
+            
+            Vue.component('line_items', {
+                template: '#lineItemTemplate'
+            });
+            
         </script>
         <!-- line item template -->
         <script type="text/html" id="lineItemTemplate">
-            <div class="slider_item" id="slider_item_cpu_cores">
+            <div class="slider_item" v-bind:id="'slider_item_' + system_name">
                 <div class="slider_images">
-                    <img class="img_sm" id="img_sm_cpu_cores" src="http://placehold.it/150x150" style="display: none;">
-                    <img class="img_me" id="img_me_cpu_cores" src="http://placehold.it/200x200" style="display: none;">
-                    <img class="img_lg" id="img_lg_cpu_cores" src="http://placehold.it/300x300" style="display: block;">
-                    <img class="img_hu" id="img_hu_cpu_cores" src="&lt;br /&gt;&#10;&lt;b&gt;Notice&lt;/b&gt;:  Undefined index: image_massive in &lt;b&gt;/home/developer/public_html/quotation_system/quotepage.php&lt;/b&gt; on line &lt;b&gt;68&lt;/b&gt;&lt;br /&gt;&#10;" style="display: none;">
+                    <img class="img_sm" v-bind:id="'img_sm_' + system_name" v-bind:src="'img/' + image_small">
+                    <img class="img_me" v-bind:id="'img_me_' + system_name" v-bind:src="'img/' + image_medium">
+                    <img class="img_lg" v-bind:id="'img_lg_' + system_name" v-bind:src="'img/' + image_large">
                 </div>
                 <div class="slider_control">
-                    <label>cpu_cores</label>
-                    <input type="range" class="range_slider" name="cpu_cores" id="cpu_cores" value="2" min="2" max="16" step="2" onchange="slideMe(this)">
-                    <output class="slider_output" id="slider_output_cpu_cores">6</output><span>cores</span>
+                    <label>{{system_name}}</label>
+                    <input type="range" class="range_slider" v-bind:name="system_name" v-bind:id="system_name" v-bind:value="units_min" v-bind:min="units_min" v-bind:max="units_max" v-bind:step="unit_increment" onchange="slideMe(this)">
+                    <output class="slider_output" v-bind:id="'slider_output_' + system_name">{{calculated_value}}</output><span>{{units}}</span>
                 </div>
-                <input type="hidden" name="slider_unit_cost_cpu_cores" id="slider_unit_cost_cpu_cores" value="100">
-                <input type="hidden" name="slider_unit_sm_cpu_cores" id="slider_unit_sm_cpu_cores" value="2">
-                <input type="hidden" name="slider_unit_me_cpu_cores" id="slider_unit_me_cpu_cores" value="4">
-                <input type="hidden" name="slider_unit_lg_cpu_cores" id="slider_unit_lg_cpu_cores" value="8">
-                <input type="hidden" name="slider_unit_hu_cpu_cores" id="slider_unit_hu_cpu_cores" value="<br />
+                <input type="hidden" v-bind:name="'slider_unit_cost_' + system_name" v-bind:id="'slider_unit_cost_' + system_name" v-bind:value="unit_cost">
+                <input type="hidden" v-bind:name="'slider_unit_sm_' + system_name" v-bind:id="'slider_unit_sm_' + system_name" v-bind:value="units_small">
+                <input type="hidden" v-bind:name="'slider_unit_me_' + system_name" v-bind:id="'slider_unit_me_' + system_name" v-bind:value="units_medium">
+                <input type="hidden" v-bind:name="'slider_unit_lg_' + system_name" v-bind:id="'slider_unit_lg_' + system_name" v-bind:value="units_large">
             </div>
         </script>
     </head>
