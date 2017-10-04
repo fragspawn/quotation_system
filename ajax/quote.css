@@ -1,0 +1,20 @@
+:root {
+	font-family: 'Roboto', sans-serif;
+}   
+#out div:nth-child(even) {
+	background: lightblue;
+}
+#out div:nth-child(odd) {
+	background: bisque;
+}
+
+#feedback_form {
+// display: none;
+}
+#fname, #lname {
+	text-transform: capitalize;
+}
+input:invalid {
+	background: pink;
+}
+

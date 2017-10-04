@@ -1,5 +1,5 @@
 // BUILD THE DOM
-Vue.component('line_item', {
+var line_items = Vue.component('line_item_group', {
     template: '#lineItemTemplate',
     data: function() {
         return { ajaxdata : [] }
@@ -32,6 +32,9 @@ new Vue({
     el: '#vue_out',
     data: {
         grand_total: 0
+    },
+    components: {
+        'line_items': line_items
     },
     methods: {
         doGrandTotal: function() {
